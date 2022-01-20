@@ -20,3 +20,14 @@ testing {
     }
   }
 }
+
+val resolvedRuntimeDependencies: Configuration by configurations.creating {
+  extendsFrom(configurations.implementation.get())
+}
+
+val copyRuntimeDependencies by tasks.registering(Copy::class) {
+  from(resolvedRuntimeDependencies)
+  into("$buildDir/runtime-libs")
+}
+
+tasks.assemble.get().dependsOn(copyRuntimeDependencies)
