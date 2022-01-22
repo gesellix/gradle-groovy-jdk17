@@ -8,10 +8,7 @@ class LibraryTest extends Specification {
     setup:
     def lib = new Library()
 
-    when:
-    def result = lib.someLibraryMethod()
-
-    then:
-    result == true
+    expect:
+    lib.checkPrivateAccess()
   }
 }
